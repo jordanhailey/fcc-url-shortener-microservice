@@ -51,11 +51,8 @@ app.post('/api/shorturl',function(req, res) {
 
 // GET api/shorturl/:short_url endpoint
 app.get('/api/shorturl/:short_url', function(req, res) {
-  let redirAddress = getSavedUrls()[req.params.short_url] || "/";
-  res.json({ redirect: {
-    from: req.params.short_url,
-    to: redirAddress
-  } });
+  const redirAddress = getSavedUrls()[req.params.short_url] || "/";
+  res.redirect(redirAddress);
 });
 
 app.listen(port, function() {
